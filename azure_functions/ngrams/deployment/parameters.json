@@ -1,0 +1,33 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "sites_ngrams_name": {
+            "value": null
+        },
+        "components_ngrams_name": {
+            "value": null
+        },
+        "serverfarms_EastUSPlan_name": {
+            "value": null
+        },
+        "config_web_name": {
+            "value": null
+        },
+        "actionGroups_vmalerts_name": {
+            "value": null
+        },
+        "actionGroups_az300vmalerts_name": {
+            "value": null
+        },
+        "storageAccounts_lgaz300storage_name": {
+            "value": null
+        },
+        "alertrules_Failure_Anomalies___ngrams_name": {
+            "value": null
+        },
+        "hostNameBindings_ngrams.azurewebsites.net_name": {
+            "value": null
+        }
+    }
+}
