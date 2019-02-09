@@ -25,16 +25,13 @@ public static async Task<IActionResult> Run(HttpRequest req, ILogger log) {
     log.LogInformation("C# HTTP trigger function processed a request.");
 
     string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-    string text = null;
+    
     try {
         dynamic jsonValue = JsonConvert.DeserializeObject(requestBody);
-        if(jsonValue is string) text = jsonValue;
-    } catch (Exception) { }
-
-    if(text != null) {
-        string json = JsonConvert.SerializeObject(getBiGrams(text), Formatting.Indented);
-        return new OkObjectResult(json);
-    } else {
-        return new BadRequestObjectResult("Please pass a (valid) JSON string in the request body");        
+        if(!(jsonValue is string)) throw new Exception("JSON value must be of type string");
+        return new OkObjectResult(JsonConvert.SerializeObject(getBiGrams(jsonValue), Formatting.Indented));
+    } catch (Exception error) {
+        log.LogInformation("C# HTTP trigger function error: " + error.ToString());
+        return new BadRequestObjectResult("Please pass a valid JSON string in the request body (" + error.ToString() + ")");
     }
 }
