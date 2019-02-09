@@ -31,7 +31,7 @@ public static async Task<IActionResult> Run(HttpRequest req, ILogger log) {
         if(!(jsonValue is string)) throw new Exception("JSON value must be of type string");
         return new OkObjectResult(JsonConvert.SerializeObject(getBiGrams(jsonValue), Formatting.Indented));
     } catch (Exception error) {
-        log.LogInformation("C# HTTP trigger function error: " + error.ToString());
+        log.LogError("C# HTTP trigger function error: " + error.ToString());
         return new BadRequestObjectResult("Please pass a valid JSON string in the request body (" + error.ToString() + ")");
     }
 }
